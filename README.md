@@ -29,50 +29,20 @@ Three interconnected pieces:
 
 ## Part 1 — Set Up BrainCache
 
-### 1. Clone or copy the app
+BrainCache is a separate project. Clone and start it first, then come back here to wire up the Claude Code integration.
 
-The `braincache-app/` folder in this repo contains the full application source. Copy it somewhere permanent on your machine:
-
-```bash
-cp -r braincache-app/ ~/BrainCache
-cd ~/BrainCache
-```
-
-Or if you're working from this export folder directly:
+**Repo:** [https://github.com/grimmsgadgets-cmyk/BrainCache](https://github.com/grimmsgadgets-cmyk/BrainCache)
 
 ```bash
-cd braincache-app/
-```
-
-### 2. Configure environment
-
-```bash
+git clone https://github.com/grimmsgadgets-cmyk/BrainCache
+cd BrainCache
 cp .env.example .env
-```
-
-The only setting in `.env` is the Ollama model. The default (`llama3.2`) is a good starting point. Options:
-
-| Model | Notes |
-|-------|-------|
-| `llama3.2` | Default. Good balance of quality and speed. |
-| `mistral` | Faster, slightly smaller context window. |
-| `phi3` | Fastest. For hardware with less than 8 GB RAM. |
-| `llama3.1` | Highest quality. ~5 GB download. |
-
-### 3. Start BrainCache
-
-```bash
 docker compose up --build
 ```
 
-On first run, Ollama downloads the model (~2 GB for llama3.2). The UI shows a red indicator until the download completes — typically 5–15 minutes. Open `http://localhost:7337` to follow progress.
+Open `http://localhost:7337`. On first run, Ollama downloads the default model (~2 GB). The UI shows a red indicator until it's ready — typically 5–15 minutes.
 
-### 4. Add sources
-
-In BrainCache at `localhost:7337`:
-- Go to the **Sources** tab
-- Add RSS feeds or scrape targets
-- Click **Poll All Sources** to fetch your first articles
+Once the indicator turns green, add your first sources on the **Sources** tab and you're ready to continue.
 
 ---
 
@@ -218,7 +188,7 @@ Run a substantive session with 8+ tool calls, then end it. Claude should automat
 │   └── Templates/
 │       └── Daily Learning Template.md
 │
-├── BrainCache/                        ← Docker app
+├── BrainCache/                        ← separate repo (github.com/grimmsgadgets-cmyk/BrainCache)
 │   ├── docker-compose.yml
 │   ├── .env
 │   └── ...
@@ -279,9 +249,7 @@ The first pull can take 5–15 minutes. The indicator in the UI turns green when
 
 ## Configuration Reference
 
-`braincache-app/config.yaml` — BrainCache runtime settings (model, poll interval, TTS/STT paths)
-
-`braincache-app/.env` — Ollama model selection
+`BrainCache/config.yaml` — BrainCache runtime settings (model, poll interval, TTS/STT paths). See the [BrainCache repo](https://github.com/grimmsgadgets-cmyk/BrainCache) for full config reference.
 
 `~/.claude/settings.json` — Claude Code hook registration
 
