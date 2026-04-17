@@ -1,6 +1,6 @@
 # /bc-sync-vault — Sync BrainCache Notebook to Obsidian
 
-Pulls every notebook entry from BrainCache and writes them as individual markdown files into `2ndBrain/wiki/` — one file per concept, with wikilinks.
+Pulls every notebook entry from BrainCache and writes them as individual markdown files into `ObsidianVault/wiki/` — one file per concept, with wikilinks.
 
 ---
 
@@ -16,7 +16,7 @@ GET `http://localhost:7337/api/notebook` — returns all entries as JSON.
 
 **3. For each notebook entry, write a file**
 
-Path: `$HOME/2ndBrain/wiki/[term].md`
+Path: `$HOME/ObsidianVault/wiki/[term].md`
 
 Use this exact format:
 
@@ -69,7 +69,7 @@ Use this exact format:
 
 **4. Write an index**
 
-Write `$HOME/2ndBrain/wiki/_index.md`:
+Write `$HOME/ObsidianVault/wiki/_index.md`:
 
 ```markdown
 # BrainCache Wiki Index
@@ -84,7 +84,7 @@ Last synced: [today's date]
 
 **5. Report**
 
-Say: "Synced [N] entries to `2ndBrain/wiki/`. [N new / N updated]. Index written to `wiki/_index.md`."
+Say: "Synced [N] entries to `ObsidianVault/wiki/`. [N new / N updated]. Index written to `wiki/_index.md`."
 
 ---
 

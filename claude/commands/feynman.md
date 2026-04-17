@@ -85,9 +85,9 @@ After the summary, do both of the following automatically without asking — jus
 
 **A) Write to Obsidian vault**
 
-First, detect the current project name by running `basename $(pwd)`. Create the directory `$HOME/2ndBrain/Projects/[project-name]/Feynman Sessions/` if it doesn't exist.
+First, detect the current project name by running `basename $(pwd)`. Create the directory `$HOME/ObsidianVault/Projects/[project-name]/Feynman Sessions/` if it doesn't exist.
 
-Create a file at `$HOME/2ndBrain/Projects/[project-name]/Feynman Sessions/YYYY-MM-DD - $ARGUMENTS.md` (use today's actual date). Use this exact structure, filling in each section from the session:
+Create a file at `$HOME/ObsidianVault/Projects/[project-name]/Feynman Sessions/YYYY-MM-DD - $ARGUMENTS.md` (use today's actual date). Use this exact structure, filling in each section from the session:
 
 ```markdown
 # YYYY-MM-DD — $ARGUMENTS
@@ -150,7 +150,7 @@ Best analogy:
 [From Phase 4 summary]
 ```
 
-After writing the file, say: "Saved to `2ndBrain/Projects/[project-name]/Feynman Sessions/YYYY-MM-DD - $ARGUMENTS.md`"
+After writing the file, say: "Saved to `ObsidianVault/Projects/[project-name]/Feynman Sessions/YYYY-MM-DD - $ARGUMENTS.md`"
 
 **B) Save to BrainCache (if running)**
 

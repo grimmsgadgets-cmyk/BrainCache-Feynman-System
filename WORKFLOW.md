@@ -40,7 +40,7 @@ Passive reading doesn't build durable knowledge. This system forces active engag
            ▼
 ┌─────────────────────────────────────────────────────────┐
 │  Layer 3: Obsidian (the knowledge vault)                │
-│  2ndBrain/ — all learning notes live here               │
+│  ObsidianVault/ — all learning notes live here               │
 │                                                         │
 │  Projects/[name]/Feynman Sessions/  — Feynman notes     │
 │  wiki/                              — BrainCache terms  │
@@ -87,7 +87,7 @@ Passive reading doesn't build durable knowledge. This system forces active engag
 - You can also review directly at `localhost:7337` using the built-in review mode
 
 ### Syncing to Obsidian
-- Run `/bc-sync-vault` to pull every BrainCache notebook entry into `2ndBrain/wiki/`
+- Run `/bc-sync-vault` to pull every BrainCache notebook entry into `ObsidianVault/wiki/`
 - Each term gets its own file with wikilinks, spaced repetition stats, and MITRE ATT&CK references if applicable
 - An index file at `wiki/_index.md` lists everything alphabetically
 
@@ -120,7 +120,7 @@ Every term you encounter gets a structured notebook entry:
 Each Feynman session creates a structured note in Obsidian:
 
 ```
-2ndBrain/Projects/[project-name]/Feynman Sessions/YYYY-MM-DD - [concept].md
+ObsidianVault/Projects/[project-name]/Feynman Sessions/YYYY-MM-DD - [concept].md
 ```
 
 The note includes: distilled understanding, what you got right, gaps found, the Q&A from the Socratic session, a 15-word compression test, an analogy, and blank wikilinks for you to connect to related concepts.

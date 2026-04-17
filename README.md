@@ -12,7 +12,7 @@ Three interconnected pieces:
 
 1. **BrainCache** — A Docker app at `localhost:7337` that fetches articles, runs Feynman sessions, and manages a spaced repetition notebook using a local LLM (Ollama)
 2. **Claude Code slash commands** — Four commands that connect Claude Code to BrainCache and your Obsidian vault
-3. **Obsidian vault** — A `2ndBrain/` folder where all your learning notes live
+3. **Obsidian vault** — A `ObsidianVault/` folder where all your learning notes live
 
 ---
 
@@ -48,30 +48,47 @@ Once the indicator turns green, add your first sources on the **Sources** tab an
 
 ## Part 2 — Set Up the Obsidian Vault
 
-### 1. Create the vault structure
+### 1. Choose your vault name
 
-Create your vault folder (or use an existing one):
-
-```bash
-mkdir -p ~/2ndBrain/Projects
-mkdir -p ~/2ndBrain/wiki
-mkdir -p ~/2ndBrain/Templates
-mkdir -p ~/2ndBrain/raw
-mkdir -p ~/2ndBrain/"Feynman Sessions"
-```
-
-### 2. Copy the Obsidian template
+The commands use `ObsidianVault` as a placeholder. Replace it with whatever you want to call your vault folder — or use an existing vault name if you already have one.
 
 ```bash
-cp obsidian/Templates/"Daily Learning Template.md" ~/2ndBrain/Templates/
+VAULT=MyVault   # change this to whatever you want
 ```
 
-### 3. Open in Obsidian
+If you already have an Obsidian vault, set `VAULT` to match its folder name exactly.
 
-Open Obsidian → Open folder as vault → select `~/2ndBrain/`.
+### 2. Create the vault structure
 
-**Recommended plugins:**
-- [Local REST API](https://github.com/coddingtonbear/obsidian-local-rest-api) — enables Claude Code to write directly into your vault. Install via Community Plugins in Obsidian settings, then enable it.
+```bash
+mkdir -p ~/$VAULT/Projects
+mkdir -p ~/$VAULT/wiki
+mkdir -p ~/$VAULT/Templates
+mkdir -p ~/$VAULT/"Feynman Sessions"
+```
+
+### 3. Copy the Obsidian template
+
+```bash
+cp obsidian/Templates/"Daily Learning Template.md" ~/$VAULT/Templates/
+```
+
+### 4. Update the vault name in the Claude commands
+
+The commands have `ObsidianVault` hardcoded — replace it with the name you chose:
+
+```bash
+for f in ~/.claude/commands/feynman.md ~/.claude/commands/learn-from-session.md ~/.claude/commands/bc-sync-vault.md; do
+  sed -i "s|ObsidianVault|$VAULT|g" "$f"
+done
+```
+
+### 5. Open in Obsidian
+
+Open Obsidian → Open folder as vault → select `~/$VAULT`.
+
+**Recommended plugin:**
+[Local REST API](https://github.com/coddingtonbear/obsidian-local-rest-api) — enables Claude Code to write directly into your vault. Install via Community Plugins in Obsidian settings.
 
 ---
 
@@ -87,9 +104,9 @@ cp claude/commands/bc-sync-vault.md ~/.claude/commands/
 cp claude/commands/learn-from-session.md ~/.claude/commands/
 ```
 
-### 2. No path changes needed
+### 2. Path setup
 
-The commands use `$HOME` which resolves automatically to your home directory. Nothing to edit.
+`$HOME` resolves automatically — no changes needed there. The vault name substitution is handled in Part 2 Step 4 above. If you skipped that step, go back and run it before continuing.
 
 ### 3. Set up the auto-learn hook
 
@@ -152,7 +169,7 @@ Open a Claude Code session from any project directory:
 /feynman TCP handshake
 ```
 
-Claude should walk you through a 5-phase Feynman session and save a note to `~/2ndBrain/Projects/[project-name]/Feynman Sessions/`.
+Claude should walk you through a 5-phase Feynman session and save a note to `~/ObsidianVault/Projects/[project-name]/Feynman Sessions/`.
 
 ### 3. Test the morning brief
 
@@ -168,7 +185,7 @@ Claude should report new articles and spaced repetition reviews due today. (Requ
 /bc-sync-vault
 ```
 
-Claude should pull all notebook entries into `~/2ndBrain/wiki/` as individual markdown files.
+Claude should pull all notebook entries into `~/ObsidianVault/wiki/` as individual markdown files.
 
 ### 5. Test the auto-learn hook
 
@@ -180,7 +197,7 @@ Run a substantive session with 8+ tool calls, then end it. Claude should automat
 
 ```
 ~/
-├── 2ndBrain/                          ← Obsidian vault
+├── ObsidianVault/                          ← Obsidian vault
 │   ├── Projects/
 │   │   └── [project-name]/
 │   │       └── Feynman Sessions/      ← /feynman saves here
@@ -228,7 +245,7 @@ cd ~/BrainCache && docker compose up -d
 ```
 
 **Feynman command can't save notes**
-Check that the `2ndBrain/Projects/` path exists and that the path in `feynman.md` matches your actual home directory.
+Check that the `ObsidianVault/Projects/` path exists and that the path in `feynman.md` matches your actual home directory.
 
 **Auto-learn hook not firing**
 Check `~/.claude/settings.json` has the correct hook path and that `auto-learn.sh` is executable (`chmod +x`).
@@ -274,7 +291,7 @@ The first pull can take 5–15 minutes. The indicator in the UI turns green when
          │ writes markdown
          ▼
 ┌─────────────────────────────────┐
-│  Obsidian (2ndBrain vault)      │
+│  Obsidian (ObsidianVault vault)      │
 │  Projects/, wiki/, Templates/   │
 └─────────────────────────────────┘
 ```

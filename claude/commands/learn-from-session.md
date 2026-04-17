@@ -45,15 +45,15 @@ Run the full `/feynman` flow inline for each concept in sequence:
 - Phase 2: socratic questions
 - Phase 3: responses
 - Phase 4: summary
-- Phase 5: save to `2ndBrain/Feynman Sessions/YYYY-MM-DD - [concept].md` AND post to BrainCache if running
+- Phase 5: save to `ObsidianVault/Feynman Sessions/YYYY-MM-DD - [concept].md` AND post to BrainCache if running
 
 After each concept completes, say: "Saved. Moving to [next concept]..." and continue.
 
 **5. For concepts the user defers ("later")**
 
-Detect the current project name by running `basename $(pwd)`. Create `$HOME/2ndBrain/Projects/[project-name]/Feynman Sessions/` if it doesn't exist.
+Detect the current project name by running `basename $(pwd)`. Create `$HOME/ObsidianVault/Projects/[project-name]/Feynman Sessions/` if it doesn't exist.
 
-Write a stub note to `$HOME/2ndBrain/Projects/[project-name]/Feynman Sessions/[concept] - TO REVIEW.md`:
+Write a stub note to `$HOME/ObsidianVault/Projects/[project-name]/Feynman Sessions/[concept] - TO REVIEW.md`:
 
 ```markdown
 # [concept] — To Review
@@ -72,7 +72,7 @@ Also POST to BrainCache if running.
 
 **6. End**
 
-Say: "Done — [N] Feynman sessions completed, [N] saved to `2ndBrain/Projects/[project-name]/`. [N] deferred to next session."
+Say: "Done — [N] Feynman sessions completed, [N] saved to `ObsidianVault/Projects/[project-name]/`. [N] deferred to next session."
 
 ---
 
