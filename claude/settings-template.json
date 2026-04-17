@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 $HOME/.claude/hooks/auto-learn.sh",
+            "timeout": 10,
+            "statusMessage": "Checking for learning opportunities..."
+          }
+        ]
+      }
+    ]
+  }
+}
